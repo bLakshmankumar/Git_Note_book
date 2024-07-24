@@ -1,0 +1,70 @@
+# Configure Git and GitHub SSH Keys :
+=====================================
+ # Check for an existing SSH key :
+ ---------------------------------
+   Step-1 : 
+   ========
+       Open Git Bash.
+   Step-2 :
+   ========
+       The first thing you should do when you install Git is to set your user name and email address. 
+       This is important because every Git commit uses this information, and it’s immutably baked into the commits you start creating:
+          > git config --global user.name "provide_name"
+          > git config --global user.email "provideyourgmail.com"
+   Steps-3 :
+   =========
+    First, check if you've already generated SSH keys for your machine. Open a terminal and enter the following command : 
+          > ls -la ~/.ssh
+    If you've already generated SSH keys, you should see output similar to this:
+     
+         -rw-------  1 user_name user_name  1766 Jul  7  2018 id_rsa
+         -rw-r--r--  1 user_name user_name   414 Jul  7  2018 id_rsa.pub
+         -rw-------  1 user_name user_name 12892 Feb  5 18:39 known_hosts
+
+    If you don't see any output or that directory doesn't exist (you get a No such file or directory message), then run:
+         > mkdir $HOME/.ssh
+    Then generate a new set of keys with:
+	      > ssh-keygen -t ed25519 -C "your_email@example.com"    [This creates a new SSH key, using the provided email as a label.]
+    Note: If you are using a legacy system that doesn't support the Ed25519 algorithm, use:    
+	      > ssh-keygen -t rsa -b 4096 -C your@email.com 
+
+    Step-4 :
+    ========
+	   cd ./ssh
+	   ls -la
+	   cat id_rsa.pub
+	   Copy the content of this file
+
+    Step-5 :
+    ========    
+	   > Open git hub-repo
+	   > Go to your profile
+	   > Go to settings Option
+	   > Go to SSH and GPG keys
+	   > Click on New ssh keys
+	   > Provide the any name
+	   > provide the copied content of id_rsa.pub key here.
+	   > save
+       
+    Step-6 :
+    ========
+     Now try to use git commmands to clone and modify and push your changes to git hub repo.
+	   > Go to repo
+	   > choose code 
+	   > Choose ssh 
+	   > copy the clone link
+	   > Go to your git-bash
+	   > Create a directory : example : mkdir git
+	   > cd git directory
+	   > git clone provide url
+	   > ls -la
+	   > make some changes on any file or create new file here example test.txt
+	   > git branch [ Verify which branch you are cuurently]
+	   > git status
+	   > git diff
+	   > git add * [If you want to push all the files then choose *, Else choose individual file only]
+	   > git commit -m "add comment"
+     > git checkout <branch-name> [ If you want to push the changes to specific branch, First checkout to that branch]
+	   > git pull origin <branch-name> --rebase [If you encounter an error, such as a failed push due to updates in the remote branch that you don't have locally, you might need to pull the latest changes first:]
+	   > git push origin <branch-name>
+	   > git push origin [push to remote repo]
