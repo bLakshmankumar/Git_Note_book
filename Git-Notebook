@@ -64,7 +64,56 @@
 	   > git diff
 	   > git add * [If you want to push all the files then choose *, Else choose individual file only]
 	   > git commit -m "add comment"
-     > git checkout <branch-name> [ If you want to push the changes to specific branch, First checkout to that branch]
+           > git checkout <branch-name> [ If you want to push the changes to specific branch, First checkout to that branch]
 	   > git pull origin <branch-name> --rebase [If you encounter an error, such as a failed push due to updates in the remote branch that you don't have locally, you might need to pull the latest changes first:]
 	   > git push origin <branch-name>
 	   > git push origin [push to remote repo]
+
+# Working with Git branches and Merges :
+=========================================
+          > Create a New Branch   : git branch branch-name [dev-branch]
+          > Switch to New Branch  : git switch dev-branch
+          > Push the new branch to the remote repository : git push --set--upstream origin dev-branch  # It'll push the dev-branch to remote and set up tracking.
+
+# Process to merge the branches :
+=================================
+         > Compare diff b/w branches                              : git diff main dev-branch   # Shows the diff b/w "main" and "dev-branch"
+         > Swith to the branch you want to merge into(e.g "main") : git switch main
+         > Merge the changes from another branch                  : git merge dev-branch       # It'll merge changes from "dev-branch" to "main"
+
+# Merge conflicts :
+===================
+         > If merge conflicts occure : Edit the conflicting files to resolve the issues.
+
+# Example Workflow :
+====================
+   1) Create and switch to a new branch:
+   --------------------------------------
+       git branch dev-branch            # Create 'dev-branch' branch
+       git switch dev-branch           # Switch to 'dev-branch' branch
+   
+   2) Make changes and commit:
+   ----------------------------
+       echo "three" > three.txt      # Create a file named 'three.txt'
+       git add *                     # Add all changes to the staging area
+       git commit -m "Add three.txt" # Commit the changes with a message
+   
+   3) Push the branch to remote: 
+   ------------------------------
+       git push --set-upstream origin dev-branch  # Push 'dev-branch' to remote
+
+   4) Switch back to the main branch:
+   ----------------------------------
+        git switch main                # Switch to 'main' branch
+  
+   5) Check the status (to see if 'three.txt' is not present):
+   ------------------------------------------------------------
+        git status                     # Check status to see if 'three.txt' is missing
+
+   6) Merge the 'dev-branch' branch into 'main':
+   -------------------------------------------
+        git merge dev-branch            # Merge 'dev-branch' into 'main'
+
+  
+
+          
